@@ -23,6 +23,9 @@ class Game:
     if count[1] == 1 and count[2] == 1 and count[3] == 1 and count[4] == 1 and count[5] == 1 and count[6] == 1:
       return 1000
 
+    if len(count) == 3 and count.most_common(3)[1] == 2 and count.most_common(3)[2] == 2 and count.most_common(3)[3] == 2:
+      return 1500
+
     score = 0
     for dice in count:
       if count[dice] > 2:
