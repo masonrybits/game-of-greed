@@ -19,3 +19,5 @@ The Game class has attributes _print and _input that make reference to the defau
 
 ## Change Log
 12-10-2019 7:00 AM - Added play method to Game class & tested.
+12-11-2019 4:00 PM - Added calculate_score method
+12-12-2019 7:50 AM - Added _do_roll & _set_aside methods 
