@@ -1,4 +1,6 @@
 from collections import Counter
+import random
+import re
 
 class Game:
 
@@ -20,15 +22,18 @@ class Game:
     if count[1] == 2 and count[5] == 4:
       return 2000
 
-    if count[1] == 1 and count[2] == 1 and count[3] == 1 and count[4] == 1 and count[5] == 1 and count[6] == 1:
-      return 1000
+    if len(count) == 6:
+      return 1500
 
-    if len(count) == 3 and count.most_common(3)[1] == 2 and count.most_common(3)[2] == 2 and count.most_common(3)[3] == 2:
+    if len(count) == 3 and count.most_common()[2][1] == 2:
       return 1500
 
     score = 0
+
     for dice in count:
-      if count[dice] > 2:
+      if count[1] > 2:
+        score += ((count[1]-2)*1000)
+      elif count[dice] > 2:
         score += ((count[dice]-2)*100) * dice
       elif dice == 1:
         score += count[dice] * 100
@@ -37,9 +42,17 @@ class Game:
 
     return score
 
+  def _do_roll(self):
+    rolls = [random.randint(1,6) for _ in range(6)]
+
+  def _set_aside(self):
+    player_input = self._input('Enter dice to keep: ')
+    inputs = re.findall(r"[1-6]", player_input)
+    return inputs
+  
 
 if __name__ == "__main__":
     g = Game()
     g.play()
-    dices = [1,1,2,2,4,5]
-    print(g.calculate_score(dices))
+    print(g._set_aside())
+   
